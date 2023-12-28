@@ -2,12 +2,16 @@ const express = require('express');
 const serverless = require('serverless-http');
 const app = express();
 const router = express.Router();
+const path = require('path');
+
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, '/views/static')));
 
 let records = [];
 
 //Get all students
 router.get('/', (req, res) => {
-  res.send('App is running..');
+  res.render('../views/index');
 });
 
 //Create new record
@@ -46,5 +50,5 @@ router.get('/demo', (req, res) => {
   ]);
 });
 
-app.use('/.netlify/functions/api', router);
+app.use('', router);
 module.exports.handler = serverless(app);
