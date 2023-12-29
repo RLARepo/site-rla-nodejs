@@ -11,7 +11,7 @@ let records = [];
 
 //Get all students
 router.get('/', (req, res) => {
-  res.render('../views/index');
+  res.sendFile(__dirname + "dist/index.html");
 });
 
 //Create new record
